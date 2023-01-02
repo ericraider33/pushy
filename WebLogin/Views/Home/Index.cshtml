@@ -1,0 +1,22 @@
+﻿@model HomeModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    @if (Model.UserName == null)
+    {
+        <span>
+            Your are logged out. 
+            <a href="/home/login">Click here to login</a>
+        </span>
+    }
+    else
+    {
+        <span>
+            You are logged in as @Model.UserName <br/>
+            <a href="/home/logout">Click here to log out</a>
+        </span>
+    }
+</div>

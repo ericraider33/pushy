@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pushy", "Pushy\Pushy.csproj", "{8009AD70-7803-46F7-BD44-15AA8FEE936F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebLogin", "WebLogin\WebLogin.csproj", "{1B90B438-F246-440E-9B9A-D5CD7C830A4F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PushyCommon", "PushyCommon\PushyCommon.csproj", "{5C169CE2-5530-4A2F-B39C-F9D1631C3EDB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8009AD70-7803-46F7-BD44-15AA8FEE936F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8009AD70-7803-46F7-BD44-15AA8FEE936F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8009AD70-7803-46F7-BD44-15AA8FEE936F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8009AD70-7803-46F7-BD44-15AA8FEE936F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B90B438-F246-440E-9B9A-D5CD7C830A4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B90B438-F246-440E-9B9A-D5CD7C830A4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B90B438-F246-440E-9B9A-D5CD7C830A4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B90B438-F246-440E-9B9A-D5CD7C830A4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C169CE2-5530-4A2F-B39C-F9D1631C3EDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C169CE2-5530-4A2F-B39C-F9D1631C3EDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C169CE2-5530-4A2F-B39C-F9D1631C3EDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C169CE2-5530-4A2F-B39C-F9D1631C3EDB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
