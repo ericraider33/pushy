@@ -1,26 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Pushy.Models;
+using PushyCommon;
 
 namespace Pushy.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ICreateTokenService tokenService;
+        private readonly ILogger<HomeController> logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ICreateTokenService tokenService, ILogger<HomeController> logger)
         {
-            _logger = logger;
+            this.tokenService = tokenService;
+            this.logger = logger;
         }
 
         public IActionResult Index()
         {
-            return View();
+            HomeModel model = new HomeModel();
+            model.JwtToken = tokenService.createToken("epeel");
+            
+            return View(model);
         }
 
         public IActionResult Privacy()

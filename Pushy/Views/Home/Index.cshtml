@@ -1,11 +1,12 @@
-﻿@{
+﻿@model HomeModel
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome EE </h1>
     <div>
-        I will get garbage before kissing your ugly ass
+        I will eat garbage before kissing your ugly ass
     </div>
 </div>
 
@@ -35,5 +36,9 @@
     </div>
 </div>
 
+<script>
+    window.pushy = { token: '@Model.JwtToken' };
+    console.log("token=" + window.pushy.token);
+</script>
 <script src="~/js/signalr.js"></script>
 <script src="~/js/chat.js"></script>

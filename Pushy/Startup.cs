@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -9,10 +11,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Primitives;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.VisualBasic;
 using Pushy.Hubs;
 using Pushy.Services;
+using PushyCommon;
 
 namespace Pushy
 {
@@ -28,6 +32,7 @@ namespace Pushy
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<ICreateTokenService, CreateTokenService>();
             services.AddSingleton<IConnectedClients, ConnectedClients>();
 
             services.AddControllersWithViews();
@@ -36,12 +41,6 @@ namespace Pushy
             services.AddSingleton<ChatService>();
             services.AddHostedService<ChatWorker>();
             
-            // services
-            //     .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-            //     .AddCookie(x =>
-            //     {
-            //         x.LoginPath = new PathString("/");
-            //     });
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -58,6 +57,25 @@ namespace Pushy
                     ValidateAudience = true,
                     ValidateLifetime = false,
                     ValidateIssuerSigningKey = true
+                };
+                
+                o.Events = new JwtBearerEvents
+                {
+                    OnMessageReceived = context =>
+                    {
+                        StringValues accessToken = context.Request.Query["access_token"];
+
+                        // If the request is for our hub...
+                        PathString path = context.HttpContext.Request.Path;
+                        Console.WriteLine("Path=" + path);
+                        
+                        if (!string.IsNullOrEmpty(accessToken) && path.StartsWithSegments("/chatHub"))
+                        {
+                            // Read the token out of the query string
+                            context.Token = accessToken;
+                        }
+                        return Task.CompletedTask;
+                    }
                 };
             });            
             services.AddAuthorization();
